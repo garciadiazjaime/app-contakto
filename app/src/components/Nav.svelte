@@ -28,7 +28,9 @@
 <nav>
 	<ul>
 		<li>
-			<img src="http://www.contaktoapp.com/static/media/logo_white.png" alt="">
+			<a href="/">
+				<img src="http://www.contaktoapp.com/static/media/logo_white.png" alt="">
+			</a>
 		</li>
 	</ul>
 </nav>
