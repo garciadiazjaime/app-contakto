@@ -3,195 +3,182 @@
 	import Subnav from '../../components/Subnav.svelte';
 </script>
 
+<style>
+	span {
+		width: 320px;
+		display: inline-block;
+	}
+	input {
+		width: 400px;
+	}
+	a {
+		padding: 12px 20px;
+		border: 1px solid black;
+	}
+</style>
 
 <Content>
 	<Subnav />
 
 	<h1>Adjuntos</h1>
 
-  <div class="column">
-    <div class="item">
-      <p>1. Foto de perfil del candidato</p>
-      <input type="file">
-    </div>
+  <p>
+		<span>1. Foto de perfil del candidato:</span>
+		<input type="file">
+	</p>
 
-    <br>
+  <h2>2. Fotografias del domicilio</h2>
+  <p>
+		<span>a. Interior derecho:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>b. Interior izquierdo:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>c. Exterior derecho:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>d. Exterior izquierdo:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>e. Frente:</span>
+		<input type="file">
+	</p>
 
-    <fieldset>
-      <legend>2. Fotografias del domicilio</legend>
+  <p>
+		<span>3. Gestor Entrevistador:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>4. Croquis:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>5. Aviso Privacidad:</span>
+		<input type="file">
+	</p>
 
-      <div class="item">
-        <p>a. Interior derecho</p>
-        <input type="file">
-      </div>
-      <div class="item">
-        <p>b. Interior izquierdo</p>
-        <input type="file">
-      </div>
-      <div class="item">
-        <p>c. Exterior derecho</p>
-        <input type="file">
-      </div>
-      <div class="item">
-        <p>d. Exterior izquierdo</p>
-        <input type="file">
-      </div>
-      <div class="item">
-        <p>e. Frente</p>
-        <input type="file">
-      </div>
-    </fieldset>
+  <h2>7. Fotografias de la Identificación</h2>
+  <p>
+		<span>7.a Identificación con fotografia:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>7.b Identificación con fotografia:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>7.c Identificación con fotografia:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>7.d Identificación con fotografia:</span>
+		<input type="file">
+	</p>
 
-    <br>
-
-    <div class="item">
-      <p>3. Gestor Entrevistador</p>
-      <input type="file">
-    </div>
-
-    <div class="item">
-      <p>4. Croquis</p>
-      <input type="file">
-    </div>
-
-    <div class="item">
-      <p>5. Aviso Privacidad</p>
-      <input type="file">
-    </div>
-
-    <div class="item">
-      <p>6. Constancia</p>
-      <input type="file">
-    </div>
-  </div>
-
-  <br>
-
-  <fieldset>
-    <legend>7. Fotografias de la Identificación</legend>
-
-    <div class="item">
-      <p>7.a Identificación con fotografia</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>7.b Identificación con fotografia</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>7.c Identificación con fotografia</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>7.d Identificación con fotografia</p>
-      <input type="file">
-    </div>
-  </fieldset>
-
-  <div class="item">
-    <p>8. Acta de nacimiento</p>
-    <input type="file">
-  </div>
-
-  <div class="item">
-    <p>9. Comprobante de domicilio</p>
-    <input type="file">
-  </div>
+  <p>
+		<span>8. Acta de nacimiento:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>9. Comprobante de domicilio:</span>
+		<input type="file">
+	</p>
 
   <br>
 
-  <fieldset>
-    <legend>10. Semanas Cotizadas</legend>
+  <h2>10. Semanas Cotizadas</h2>
+  <p>
+		<span>10.a Semanas Cotizadas:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>10.b Semanas Cotizadas:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>10.c Semanas Cotizadas:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>10.d Semanas Cotizadas:</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>10.e Semanas Cotizadas:</span>
+		<input type="file">
+	</p>
 
-    <div class="item">
-      <p>10.a Semanas Cotizadas</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>10.b Semanas Cotizadas</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>10.c Semanas Cotizadas</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>10.d Semanas Cotizadas</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>10.e Semanas Cotizadas</p>
-      <input type="file">
-    </div>
-  </fieldset>
+  <p>
+		<span>11. Validación de Demandas Laborales</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>12. Carta Laboral</span>
+		<input type="file">
+	</p>
 
-  <br>
 
-  <div class="item">
-    <p>11. Validación de Demandas Laborales</p>
-    <input type="file">
-  </div>
+  <h2>13. Adicionales</h2>
+  <p>
+		<span>Adicionales 1</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 2</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 3</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 4</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 5</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 6</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 7</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 8</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 9</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 10</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 11</span>
+		<input type="file">
+	</p>
+  <p>
+		<span>Adicionales 12</span>
+		<input type="file">
+	</p>
 
-  <div class="item">
-    <p>12. Carta Laboral</p>
-    <input type="file">
-  </div>
 
-  <br>
+  <p>
+		<span>Extra A (Cualquier formato)</span>
+		<input type="file">
+	</p>
 
-  <fieldset>
-    <legend>13. Adicionales</legend>
-
-    <div class="item">
-      <p>Adicionales A</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales B</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales C</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales D</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales E</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales F</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales G</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales H</p>
-      <input type="file">
-    </div>
-    <div class="item">
-      <p>Adicionales I</p>
-      <input type="file">
-    </div>
-  </fieldset>
-
-  <br>
-
-  <div class="item">
-    <p>Extra A (Cualquier formato)</p>
-    <input type="file">
-  </div>
-
-  <br>
-
-  <div class="cta">
-    <button>Guardar</button>
-    <br />
-    <button>Exportar</button>
-  </div>
+  <a href="/">Guardar</a>
+	<a href="/">Cancelar</a>
 </Content>

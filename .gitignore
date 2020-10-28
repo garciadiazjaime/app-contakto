@@ -7,3 +7,5 @@ yarn-error.log
 secrets.txt
 data
 secrets.txt
+build
+app/static/*.zip

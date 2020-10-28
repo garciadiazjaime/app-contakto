@@ -47,13 +47,13 @@
     </div>
     <ul>
       <li>
-        <a href="./#">Candidato 1</a>
+        <a href="/candidato/edit/1">Candidato 1</a>
       </li>
       <li>
-        <a href="./#">Candidato 2</a>
+        <a href="/candidato/edit/2">Candidato 2</a>
       </li>
       <li>
-        <a href="./#">Candidato 3</a>
+        <a href="/candidato/edit/3">Candidato 3</a>
       </li>
     </ul>
   </section>
