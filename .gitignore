@@ -9,3 +9,4 @@ data
 secrets.txt
 build
 app/static/*.zip
+bundle/

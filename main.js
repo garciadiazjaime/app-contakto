@@ -11,7 +11,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  win.loadFile('src/index.html')
+  win.loadFile('bundle/index.html')
 }
 
 // This method will be called when Electron has finished
