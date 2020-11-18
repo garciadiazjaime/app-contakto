@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, protocol } = require('electron')
+const path = require('path')
+const url = require('url')
 
 function createWindow () {
   // Create the browser window.
@@ -10,8 +12,18 @@ function createWindow () {
     }
   })
 
-  // and load the index.html of the app.
-  win.loadFile('bundle/index.html')
+  protocol.interceptFileProtocol('file', (request, callback) => {
+    const url = request.url.substr(7)
+    console.log('url', url, path.normalize(`${__dirname}/${url}`))
+    callback({ path: path.normalize(`${__dirname}/bundle/${url}`)})
+  })
+
+
+  win.loadURL(url.format({
+    pathname: 'index.html',
+    protocol: 'file',
+    slashes: true
+  }))
 }
 
 // This method will be called when Electron has finished
