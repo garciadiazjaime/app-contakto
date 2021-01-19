@@ -1,27 +1,59 @@
-const { app, BrowserWindow, protocol } = require('electron')
+const { app, BrowserWindow, protocol, dialog } = require('electron')
 const path = require('path')
 const url = require('url')
 
-const fs = require('fs').promises; 
+const fs = require('fs'); 
 const { v4: uuidv4 } = require('uuid');
+
+const archiver = require('archiver');
+
 
 async function saveUserFile(files) {
   return files.filePaths.map(filePath => {
     const imageExtension = filePath.split('.').pop()
     const imageName = `adjunto-${uuidv4()}.${imageExtension}`;
 
-    fs.copyFile( filePath, `bundle/${imageName}`)
+    fs.copyFileSync(filePath, `bundle/${imageName}`)
 
     return imageName
   })
 };
 
 async function deleteUserFile(fileName) {
-  await fs.unlink(`bundle/${fileName}`)
+  fs.unlinkSync(`bundle/${fileName}`)
+}
+
+async function generateZip(data) {
+  const zipFilename = await dialog.showSaveDialogSync({
+    defaultPath: 'candidato.zip'
+  })
+
+  if (!zipFilename) {
+    return null
+  }
+
+  const output = fs.createWriteStream(zipFilename);
+  const archive = archiver('zip', {
+    zlib: { level: 9 }
+  });
+
+  archive.pipe(output);
+
+  archive.append(JSON.stringify(data, null, 2), { name: 'data.txt' });
+
+  Object.keys(data.adjuntos).forEach(key => {
+    const name = data.adjuntos[key]
+    if (name) {
+      archive.file(`bundle/${name}`, { name });
+    }
+  })
+
+  archive.finalize();
 }
 
 exports.saveUserFile = saveUserFile
 exports.deleteUserFile = deleteUserFile
+exports.generateZip = generateZip
 
 function createWindow () {
   // Create the browser window.
