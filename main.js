@@ -2,19 +2,42 @@ const { app, BrowserWindow, protocol } = require('electron')
 const path = require('path')
 const url = require('url')
 
+const fs = require('fs').promises; 
+const { v4: uuidv4 } = require('uuid');
+
+async function saveUserFile(files) {
+  return files.filePaths.map(filePath => {
+    const imageExtension = filePath.split('.').pop()
+    const imageName = `adjunto-${uuidv4()}.${imageExtension}`;
+
+    fs.copyFile( filePath, `bundle/${imageName}`)
+
+    return imageName
+  })
+};
+
+async function deleteUserFile(fileName) {
+  await fs.unlink(`bundle/${fileName}`)
+}
+
+exports.saveUserFile = saveUserFile
+exports.deleteUserFile = deleteUserFile
+
 function createWindow () {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true,
     }
   })
 
   protocol.interceptFileProtocol('file', (request, callback) => {
     const url = request.url.substr(7)
     console.log('url', url, path.normalize(`${__dirname}/${url}`))
+
     callback({ path: path.normalize(`${__dirname}/bundle/${url}`)})
   })
 
@@ -24,6 +47,9 @@ function createWindow () {
     protocol: 'file',
     slashes: true
   }))
+  
+  // Open the DevTools. 
+  // win.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished

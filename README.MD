@@ -16,6 +16,7 @@ cp app.asar app-contakto/node_modules/electron/dist/Electron.app/Contents/Resour
 cd ~/Dev/desktop/app-contakto
 npx electron-packager . app-contakto --platform=win32 --arch=x64
 
+rm -rf ../app-contakto-win32-x64
 mv app-contakto-win32-x64 ../
 cd ..
 zip -r app-contakto-win32-x64.zip app-contakto-win32-x64
