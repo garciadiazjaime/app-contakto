@@ -39,7 +39,7 @@ async function generateZip(data) {
 
   archive.pipe(output);
 
-  archive.append(JSON.stringify(data, null, 2), { name: 'data.txt' });
+  archive.append(JSON.stringify(data, null, 2), { name: 'data.json' });
 
   Object.keys(data.adjuntos).forEach(key => {
     const name = data.adjuntos[key]
