@@ -13,14 +13,14 @@ async function saveUserFile(files) {
     const imageExtension = filePath.split('.').pop()
     const imageName = `adjunto-${uuidv4()}.${imageExtension}`;
 
-    fs.copyFileSync(filePath, path.join('bundle',imageName ))
+    fs.copyFileSync(filePath, path.join(__dirname, 'bundle', imageName ))
 
     return imageName
   })
 };
 
 async function deleteUserFile(fileName) {
-  fs.unlinkSync(`bundle/${fileName}`)
+  fs.unlinkSync(path.join(__dirname, 'bundle',fileName ))
 }
 
 async function generateZip(data) {
@@ -44,7 +44,7 @@ async function generateZip(data) {
   Object.keys(data.adjuntos).forEach(key => {
     const name = data.adjuntos[key]
     if (name) {
-      archive.file(path.join('bundle',name ), { name });
+      archive.file(path.join(__dirname, 'bundle',name ), { name });
     }
   })
 
