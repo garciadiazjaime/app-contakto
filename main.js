@@ -1,4 +1,4 @@
-const { app, BrowserWindow, protocol, dialog } = require('electron')
+const { app, BrowserWindow, protocol, dialog, nativeImage } = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -10,12 +10,15 @@ const archiver = require('archiver');
 
 async function saveUserFile(files) {
   return files.filePaths.map(filePath => {
+    const userImage = nativeImage.createFromPath(filePath)
+    const imageBuffer = userImage.toJPEG(15)
+
     const imageExtension = filePath.split('.').pop()
-    const imageName = `adjunto-${uuidv4()}.${imageExtension}`;
 
-    fs.copyFileSync(filePath, path.join(__dirname, 'bundle', imageName ))
+    const reducedImageName = `adjunto-small-${uuidv4()}.${imageExtension}`;
+    fs.writeFileSync(path.join(__dirname, 'bundle', reducedImageName ), imageBuffer)
 
-    return imageName
+    return reducedImageName
   })
 };
 
