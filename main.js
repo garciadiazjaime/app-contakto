@@ -7,11 +7,19 @@ const { v4: uuidv4 } = require('uuid');
 
 const archiver = require('archiver');
 
+function getQualityFactor(filePath) {
+  const stats = fs.statSync(filePath)
+  const sizeInKB = stats.size / 1024;
+
+  return sizeInKB > 150 ? 15 : 90
+}
 
 async function saveUserFile(files) {
   return files.filePaths.map(filePath => {
     const userImage = nativeImage.createFromPath(filePath)
-    const imageBuffer = userImage.toJPEG(15)
+
+    const quality = getQualityFactor(filePath)
+    const imageBuffer = userImage.toJPEG(quality)
 
     const imageExtension = filePath.split('.').pop()
 
