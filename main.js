@@ -2,7 +2,7 @@ const { app, BrowserWindow, protocol, dialog, nativeImage } = require('electron'
 const path = require('path')
 const url = require('url')
 
-const fs = require('fs'); 
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 const archiver = require('archiver');
@@ -66,6 +66,8 @@ exports.saveUserFile = saveUserFile
 exports.deleteUserFile = deleteUserFile
 exports.generateZip = generateZip
 
+let onlineStatusWindow
+
 function createWindow () {
   // Create the browser window.
   const win = new BrowserWindow({
@@ -90,9 +92,11 @@ function createWindow () {
     protocol: 'file',
     slashes: true
   }))
-  
-  // Open the DevTools. 
+
+  // Open the DevTools.
   // win.webContents.openDevTools()
+  onlineStatusWindow = new BrowserWindow({ width: 0, height: 0, show: false })
+  onlineStatusWindow.loadURL(`file://${__dirname}/index.html`)
 }
 
 // This method will be called when Electron has finished
