@@ -1,4 +1,5 @@
-const { app, BrowserWindow, protocol, dialog, nativeImage } = require('electron')
+const { app, BrowserWindow, protocol, dialog, nativeImage, Menu, ipcMain } = require('electron')
+const { autoUpdater } = require('electron-updater');
 const path = require('path')
 const url = require('url')
 
@@ -99,12 +100,29 @@ if (!gotTheLock) {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      myWindow = createWindow()
     }
   })
 
   // In this file you can include the rest of your app's specific main process
   // code. You can also put them in separate files and require them here.
+
+  ipcMain.on('app_version', (event) => {
+    console.log('perro:app_version')
+    event.sender.send('app_version', { version: app.getVersion() });
+  });
+
+  ipcMain.on('restart_app', () => {
+    console.log('restart_app')
+    autoUpdater.quitAndInstall();
+  });
+
+  autoUpdater.on('update-available', () => {
+    myWindow.webContents.send('update_available');
+  });
+  autoUpdater.on('update-downloaded', () => {
+    myWindow.webContents.send('update_downloaded');
+  });
 }
 
 function createWindow () {
@@ -130,4 +148,32 @@ function createWindow () {
     protocol: 'file',
     slashes: true
   }))
+
+  win.once('ready-to-show', async () => {
+    console.log('ready-to-show')
+    const res = await autoUpdater.checkForUpdatesAndNotify();
+    console.log(res)
+  });
+
+  // const template = [
+  //   {
+  //     label: 'Actualizar',
+  //     submenu: [
+  //       {
+  //         label: 'Actualizar',
+  //         click: async () => {
+  //           const { ipcMain } = require('electron');
+  //           console.log(ipcMain)
+  //           // // const { shell } = require('electron')
+  //           // // await shell.openExternal('https://electronjs.org')
+  //           // ipcMain.send('restart_app');
+  //         }
+  //       }
+  //     ]
+  //   },
+  // ]
+  // const menu = Menu.buildFromTemplate(template)
+  // Menu.setApplicationMenu(menu)
+
+  return win
 }

@@ -10,3 +10,4 @@ secrets.txt
 build
 app/static/*.zip
 bundle/
+electron-builder.yml
