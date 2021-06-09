@@ -11,3 +11,4 @@ build
 app/static/*.zip
 bundle/
 electron-builder.yml
+dist
