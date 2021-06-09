@@ -24,7 +24,7 @@
     "uuid": "^8.3.2"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/garciadiazjaime/app-contakto.git"
+    "type": "git",
+    "url": "https://github.com/garciadiazjaime/app-contakto.git"
   }
 }
