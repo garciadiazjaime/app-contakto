@@ -155,25 +155,5 @@ function createWindow () {
     console.log(res)
   });
 
-  // const template = [
-  //   {
-  //     label: 'Actualizar',
-  //     submenu: [
-  //       {
-  //         label: 'Actualizar',
-  //         click: async () => {
-  //           const { ipcMain } = require('electron');
-  //           console.log(ipcMain)
-  //           // // const { shell } = require('electron')
-  //           // // await shell.openExternal('https://electronjs.org')
-  //           // ipcMain.send('restart_app');
-  //         }
-  //       }
-  //     ]
-  //   },
-  // ]
-  // const menu = Menu.buildFromTemplate(template)
-  // Menu.setApplicationMenu(menu)
-
   return win
 }
