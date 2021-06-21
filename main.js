@@ -113,14 +113,16 @@ if (!gotTheLock) {
   });
 
   ipcMain.on('restart_app', () => {
-    console.log('restart_app')
+    console.log('perro:restart_app')
     autoUpdater.quitAndInstall();
   });
 
   autoUpdater.on('update-available', () => {
+    console.log('perro:update-available')
     myWindow.webContents.send('update_available');
   });
   autoUpdater.on('update-downloaded', () => {
+    console.log('perro:update-downloaded')
     myWindow.webContents.send('update_downloaded');
   });
 }
@@ -150,7 +152,7 @@ function createWindow () {
   }))
 
   win.once('ready-to-show', async () => {
-    console.log('ready-to-show')
+    console.log('perro:ready-to-show')
     const res = await autoUpdater.checkForUpdatesAndNotify();
     console.log(res)
   });
