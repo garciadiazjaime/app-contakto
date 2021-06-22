@@ -25,3 +25,11 @@ cd ..
 zip -r app-contakto-win32-x64.zip app-contakto-win32-x64
 zip -r app-contakto-win32-ia32.zip app-contakto-win32-ia32
 ```
+
+
+
+## How to deploy
+rm -rf ~/Library/Caches/electron-builder
+rm -rf node_modules
+npm c set registry https://registry.npmjs.org
+npm i
