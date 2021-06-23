@@ -33,3 +33,4 @@ rm -rf ~/Library/Caches/electron-builder
 rm -rf node_modules
 npm c set registry https://registry.npmjs.org
 npm i
+npm run deploy
