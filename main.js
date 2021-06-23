@@ -108,21 +108,18 @@ if (!gotTheLock) {
   // code. You can also put them in separate files and require them here.
 
   ipcMain.on('app_version', (event) => {
-    console.log('perro:app_version')
     event.sender.send('app_version', { version: app.getVersion() });
   });
 
   ipcMain.on('restart_app', () => {
-    console.log('perro:restart_app')
     autoUpdater.quitAndInstall();
   });
 
   autoUpdater.on('update-available', () => {
-    console.log('perro:update-available')
     myWindow.webContents.send('update_available');
   });
+
   autoUpdater.on('update-downloaded', () => {
-    console.log('perro:update-downloaded')
     myWindow.webContents.send('update_downloaded');
   });
 }
@@ -152,9 +149,7 @@ function createWindow () {
   }))
 
   win.once('ready-to-show', async () => {
-    console.log('perro:ready-to-show')
-    const res = await autoUpdater.checkForUpdatesAndNotify();
-    console.log(res)
+    await autoUpdater.checkForUpdatesAndNotify();
   });
 
   return win
