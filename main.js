@@ -15,6 +15,16 @@ function getQualityFactor(filePath) {
   return sizeInKB > 150 ? 15 : 90
 }
 
+function getAttachmentPath(appPath) {
+  const attachmentPath = path.join(appPath, path.join('bundle', 'adjuntos'))
+  
+  if (!fs.existsSync(attachmentPath)){
+    fs.mkdirSync(attachmentPath);
+  }
+  
+  return attachmentPath
+}
+
 async function saveUserFile(files) {
   return files.filePaths.map(filePath => {
     const userImage = nativeImage.createFromPath(filePath)
@@ -23,11 +33,18 @@ async function saveUserFile(files) {
     const imageBuffer = userImage.toJPEG(quality)
 
     const imageExtension = filePath.split('.').pop()
+    
+    const appPath = app.getAppPath('home')
+    const attachmentPath = getAttachmentPath(appPath)
 
     const reducedImageName = `adjunto-small-${uuidv4()}.${imageExtension}`;
-    fs.writeFileSync(path.join(__dirname, 'bundle', reducedImageName ), imageBuffer)
+    const imagePath = path.join(attachmentPath, reducedImageName)
+    fs.writeFileSync(imagePath, imageBuffer)
 
-    return reducedImageName
+    return {
+      reducedImageName,
+      imagePath,
+    }
   })
 };
 
