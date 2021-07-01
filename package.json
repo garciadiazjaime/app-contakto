@@ -8,7 +8,7 @@
     "start": "electron .",
     "build": "electron-builder build --mac --win --publish never",
     "deploy": "npm run clean && npm run publish",
-    "publish": "electron-builder build --mac --publish always",
+    "publish": "electron-builder build --mac --win --publish always",
     "clean": "rm -rf ~/Library/Caches/electron-builder"
   },
   "keywords": [],

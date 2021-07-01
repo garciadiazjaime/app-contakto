@@ -47,6 +47,7 @@ async function saveUserFile(files) {
 
     return {
       imageBuffer,
+      imageName: reducedImageName,
     }
   })
 };
