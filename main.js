@@ -16,7 +16,7 @@ function getQualityFactor(filePath) {
 }
 
 function getAttachmentPath(appPath) {
-  const attachmentPath = path.join(appPath, path.join('bundle', 'adjuntos'))
+  const attachmentPath = path.join(appPath, 'contakto-app')
   
   if (!fs.existsSync(attachmentPath)){
     fs.mkdirSync(attachmentPath);
@@ -57,9 +57,6 @@ async function saveUserFile(files) {
       music: app.getPath('music'),
       pictures: app.getPath('pictures'),
       videos: app.getPath('videos'),
-      recent: app.getPath('recent'),
-      logs: app.getPath('logs'),
-      crashDumps: app.getPath('crashDumps'),
       cache: app.getPath('cache'),
       userData: app.getPath('userData'),
       appData: app.getPath('appData'),
