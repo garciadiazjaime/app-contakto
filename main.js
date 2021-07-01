@@ -16,7 +16,7 @@ function getQualityFactor(filePath) {
 }
 
 function getAttachmentPath(appPath) {
-  const attachmentPath = path.join(__dirname, 'bundle')
+  const attachmentPath = path.join(appPath, 'app-contakto')
   
   if (!fs.existsSync(attachmentPath)){
     fs.mkdirSync(attachmentPath);
@@ -46,22 +46,6 @@ async function saveUserFile(files) {
     }
 
     return {
-      reducedImageName,
-      imagePath,
-      temp: app.getPath('temp'),
-      exe: app.getPath('exe'),
-      module: app.getPath('module'),
-      desktop: app.getPath('desktop'),
-      documents: app.getPath('documents'),
-      downloads: app.getPath('downloads'),
-      music: app.getPath('music'),
-      pictures: app.getPath('pictures'),
-      videos: app.getPath('videos'),
-      cache: app.getPath('cache'),
-      userData: app.getPath('userData'),
-      appData: app.getPath('appData'),
-      home: app.getPath('home'),
-      __dirname,
       imageBuffer,
     }
   })
