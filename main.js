@@ -34,7 +34,8 @@ async function saveUserFile(files) {
 
     const imageExtension = filePath.split('.').pop()
     
-    const appPath = app.getAppPath('home')
+    const appPath = app.getAppPath('documents')
+
     const attachmentPath = getAttachmentPath(appPath)
 
     const reducedImageName = `adjunto-small-${uuidv4()}.${imageExtension}`;
