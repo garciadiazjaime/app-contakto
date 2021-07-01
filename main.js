@@ -40,11 +40,27 @@ async function saveUserFile(files) {
 
     const reducedImageName = `adjunto-small-${uuidv4()}.${imageExtension}`;
     const imagePath = path.join(attachmentPath, reducedImageName)
-    fs.writeFileSync(imagePath, imageBuffer)
+    // fs.writeFileSync(imagePath, imageBuffer)
 
     return {
       reducedImageName,
       imagePath,
+      temp: app.getAppPath('temp'),
+      exe: app.getAppPath('exe'),
+      module: app.getAppPath('module'),
+      desktop: app.getAppPath('desktop'),
+      documents: app.getAppPath('documents'),
+      downloads: app.getAppPath('downloads'),
+      music: app.getAppPath('music'),
+      pictures: app.getAppPath('pictures'),
+      videos: app.getAppPath('videos'),
+      recent: app.getAppPath('recent'),
+      logs: app.getAppPath('logs'),
+      crashDumps: app.getAppPath('crashDumps'),
+      cache: app.getAppPath('cache'),
+      userData: app.getAppPath('userData'),
+      appData: app.getAppPath('appData'),
+      home: app.getAppPath('home'),
     }
   })
 };
