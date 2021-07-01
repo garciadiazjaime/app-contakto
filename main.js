@@ -172,7 +172,7 @@ function createWindow () {
   })
 
   protocol.interceptFileProtocol('file', (request, callback) => {
-    if (url.includes('.png')) {
+    if (request.url.includes('.png')) {
       return callback({ path: request.url})
     }
 
