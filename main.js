@@ -18,9 +18,9 @@ function getQualityFactor(filePath) {
 function getAttachmentPath(appPath) {
   const attachmentPath = path.join(appPath, path.join('bundle', 'adjuntos'))
   
-  if (!fs.existsSync(attachmentPath)){
-    fs.mkdirSync(attachmentPath);
-  }
+  // if (!fs.existsSync(attachmentPath)){
+  //   fs.mkdirSync(attachmentPath);
+  // }
   
   return attachmentPath
 }
