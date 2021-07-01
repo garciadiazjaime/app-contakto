@@ -33,14 +33,17 @@ async function saveUserFile(files) {
     const imageBuffer = userImage.toJPEG(quality)
 
     const imageExtension = filePath.split('.').pop()
-    
-    const appPath = app.getAppPath('documents')
+    const appPath = app.getPath('documents')
 
     const attachmentPath = getAttachmentPath(appPath)
 
     const reducedImageName = `adjunto-small-${uuidv4()}.${imageExtension}`;
     const imagePath = path.join(attachmentPath, reducedImageName)
-    // fs.writeFileSync(imagePath, imageBuffer)
+    try {
+      fs.writeFileSync(imagePath, imageBuffer)
+    } catch(error) {
+      console.error(error)
+    }
 
     return {
       reducedImageName,
@@ -147,6 +150,7 @@ if (!gotTheLock) {
 
   ipcMain.on('restart_app', () => {
     autoUpdater.quitAndInstall();
+    return "cool"
   });
 
   autoUpdater.on('update-available', () => {
