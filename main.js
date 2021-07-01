@@ -61,6 +61,7 @@ async function saveUserFile(files) {
       userData: app.getPath('userData'),
       appData: app.getPath('appData'),
       home: app.getPath('home'),
+      __dirname,
     }
   })
 };
@@ -171,8 +172,11 @@ function createWindow () {
   })
 
   protocol.interceptFileProtocol('file', (request, callback) => {
-    const url = request.url.substr(7)
+    if (url.includes('.png')) {
+      return callback({ path: request.url})
+    }
 
+    const url = request.url.substr(7)
     callback({ path: path.normalize(`${__dirname}/bundle/${url}`)})
   })
 
