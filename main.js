@@ -18,9 +18,9 @@ function getQualityFactor(filePath) {
 function getAttachmentPath(appPath) {
   const attachmentPath = path.join(appPath, path.join('bundle', 'adjuntos'))
   
-  // if (!fs.existsSync(attachmentPath)){
-  //   fs.mkdirSync(attachmentPath);
-  // }
+  if (!fs.existsSync(attachmentPath)){
+    fs.mkdirSync(attachmentPath);
+  }
   
   return attachmentPath
 }
@@ -48,22 +48,22 @@ async function saveUserFile(files) {
     return {
       reducedImageName,
       imagePath,
-      temp: app.getAppPath('temp'),
-      exe: app.getAppPath('exe'),
-      module: app.getAppPath('module'),
-      desktop: app.getAppPath('desktop'),
-      documents: app.getAppPath('documents'),
-      downloads: app.getAppPath('downloads'),
-      music: app.getAppPath('music'),
-      pictures: app.getAppPath('pictures'),
-      videos: app.getAppPath('videos'),
-      recent: app.getAppPath('recent'),
-      logs: app.getAppPath('logs'),
-      crashDumps: app.getAppPath('crashDumps'),
-      cache: app.getAppPath('cache'),
-      userData: app.getAppPath('userData'),
-      appData: app.getAppPath('appData'),
-      home: app.getAppPath('home'),
+      temp: app.getPath('temp'),
+      exe: app.getPath('exe'),
+      module: app.getPath('module'),
+      desktop: app.getPath('desktop'),
+      documents: app.getPath('documents'),
+      downloads: app.getPath('downloads'),
+      music: app.getPath('music'),
+      pictures: app.getPath('pictures'),
+      videos: app.getPath('videos'),
+      recent: app.getPath('recent'),
+      logs: app.getPath('logs'),
+      crashDumps: app.getPath('crashDumps'),
+      cache: app.getPath('cache'),
+      userData: app.getPath('userData'),
+      appData: app.getPath('appData'),
+      home: app.getPath('home'),
     }
   })
 };
