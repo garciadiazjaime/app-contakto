@@ -15,7 +15,8 @@ function getQualityFactor(filePath) {
   return sizeInKB > 150 ? 15 : 90
 }
 
-function getAttachmentPath(appPath) {
+function getAttachmentPath() {
+  const appPath = app.getPath('documents')
   const attachmentPath = path.join(appPath, 'app-contakto')
   
   if (!fs.existsSync(attachmentPath)){
@@ -33,9 +34,9 @@ async function saveUserFile(files) {
     const imageBuffer = userImage.toJPEG(quality)
 
     const imageExtension = filePath.split('.').pop()
-    const appPath = app.getPath('documents')
+    
 
-    const attachmentPath = getAttachmentPath(appPath)
+    const attachmentPath = getAttachmentPath()
 
     const reducedImageName = `adjunto-small-${uuidv4()}.${imageExtension}`;
     const imagePath = path.join(attachmentPath, reducedImageName)
@@ -53,7 +54,12 @@ async function saveUserFile(files) {
 };
 
 async function deleteUserFile(fileName) {
-  fs.unlinkSync(path.join(__dirname, 'bundle',fileName ))
+  if (!fileName) {
+    return null
+  }
+
+  const attachmentPath = getAttachmentPath()
+  fs.unlinkSync(path.join(attachmentPath, fileName ))
 }
 
 async function generateZip(data) {
@@ -72,14 +78,32 @@ async function generateZip(data) {
 
   archive.pipe(output);
 
-  archive.append(JSON.stringify(data, null, 2), { name: 'data.json' });
+  const attachmentPath = getAttachmentPath()
 
   Object.keys(data.adjuntos).forEach(key => {
-    const name = data.adjuntos[key]
-    if (name) {
-      archive.file(path.join(__dirname, 'bundle',name ), { name });
+    const adjunto = data.adjuntos[key]
+    if (!adjunto) {
+      return null
     }
+
+    const { imageName } = adjunto
+    if (!imageName) {
+      delete data.adjuntos[key]
+      return null
+    }
+
+    data.adjuntos[key] = imageName
+
+    const filePath = path.join(attachmentPath, imageName)
+
+    if (!fs.existsSync(filePath)){
+      return null
+    }
+
+    archive.file(filePath, { name: imageName });
   })
+
+  archive.append(JSON.stringify(data, null, 2), { name: 'data.json' });
 
   archive.finalize();
 }
