@@ -1,6 +1,6 @@
 {
   "name": "app-contakto",
-  "version": "1.2.27",
+  "version": "1.2.28",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "electron .",
     "build": "electron-builder build --mac --win --publish never",
     "deploy": "npm run clean && npm run publish",
-    "publish": "electron-builder build --win --ia32 --publish always",
+    "publish": "electron-builder build --mac --publish always",
     "clean": "rm -rf ~/Library/Caches/electron-builder"
   },
   "keywords": [],
